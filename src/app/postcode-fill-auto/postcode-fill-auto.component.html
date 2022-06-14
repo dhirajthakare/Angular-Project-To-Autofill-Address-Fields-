@@ -53,6 +53,17 @@
                     <input formControlName="unitno"  class="form-control auto_addr_country" type="text" placeholder="UNIT NO" name="unitNo" id="unitNo">
                 </div>
                </div>
+               <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <input formControlName="lat" type="hidden" id="lat" name="latitude" > <br/>
+                      <input formControlName="long" type="hidden" id="long" name="longitude"> <br/>
+                      <div class="map-field">
+                        <div id="map_canvas" style = " height: 250px;" ></div>
+                      </div>
+                    </div>
+                  </div>
+               </div>
               
                 <div class="mt-3">
                     <button  class="form-control btn btn-primary" type="submit">Submit </button>
