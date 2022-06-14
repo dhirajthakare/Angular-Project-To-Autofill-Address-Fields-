@@ -1,0 +1,64 @@
+
+
+<div class="mt-4">
+    <div class="col-md-6 offset-md-3  card">
+        <div class="card-body m-4">
+            <h4 class="mt-4">Auto PostCode fill </h4>
+    
+            <form [formGroup]="myform" (ngSubmit)="insertData()" action="">
+                <div class="mt-3">
+                    <label for="name">PostCode :</label>
+                    <input formControlName="postcode" class="form-control auto_search" type="text" name="postcode" id="postcode">
+                </div>
+                <div class="row">
+                    <div class="mt-3 col-md-6">
+                        <label for="name">HOUSE NAME/NO.  :</label>
+                        <input formControlName="Address"  class="form-control auto_house" type="text" placeholder="HOUSE NAME/NO" name="Address" id="Address">
+                    </div>
+                    <div class="mt-3 col-md-6">
+                        <label for="name">STREET NAME :</label>
+                        <input formControlName="street_name"  class="form-control auto_street_add" type="text" placeholder="STREET NAME" name="street" id="street">
+                    </div>
+                </div>
+               <div class="row">
+               
+                <div class="mt-3 col-md-6">
+                    <label for="name">ADDRESS 2 :</label>
+                    <input formControlName="Address2"  class="form-control auto_addr_line2" type="text" placeholder="ADDRESS 2" name="Address2" id="Address2">
+                </div>
+                <div class="mt-3 col-md-6">
+                    <label for="name">ADDRESS 3 :</label>
+                    <input formControlName="Address3"  class="form-control auto_addr_line3" type="text" placeholder="ADDRESS 3" name="Address3" id="Address3">
+                </div>
+               </div>
+               <div class="row">
+                
+                <div class="mt-3 col-md-6">
+                    <label for="name">TOWN  :</label>
+                    <input formControlName="town"  class="form-control auto_addr_town" type="text" placeholder="TOWN" name="town" id="town">
+                </div>
+                <div class="mt-3 col-md-6">
+                    <label for="name">COUNTY :</label>
+                    <input formControlName="county"  class="form-control auto_addr_county" type="text" placeholder="COUNTY" name="county" id="county">
+                </div>
+            
+               </div>
+               <div class="row">
+                <div class="mt-3 col-md-6">
+                    <label for="name">COUNTRY :</label>
+                    <input formControlName="country"  class="form-control auto_addr_country" type="text" placeholder="COUNTRY" name="country" id="country">
+                </div>
+                <div class="mt-3 col-md-6">
+                    <label for="name">UNIT NO :</label>
+                    <input formControlName="unitno"  class="form-control auto_addr_country" type="text" placeholder="UNIT NO" name="unitNo" id="unitNo">
+                </div>
+               </div>
+              
+                <div class="mt-3">
+                    <button  class="form-control btn btn-primary" type="submit">Submit </button>
+                </div>
+            </form>
+    
+        </div>
+    </div>
+</div>

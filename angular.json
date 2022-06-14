@@ -29,7 +29,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/cc_c2a.min.js"            ]
           },
           "configurations": {
             "production": {
