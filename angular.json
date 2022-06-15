@@ -30,7 +30,9 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/cc_c2a.min.js"            ]
+              "src/assets/js/cc_c2a.min.js",
+              "src/assets/js/GoogleApi.js"       
+            ]
           },
           "configurations": {
             "production": {
