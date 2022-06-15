@@ -65,6 +65,8 @@ export class PostcodeFillAutoComponent implements OnInit {
           
           })
           this.myform.updateValueAndValidity({ onlySelf: false, emitEvent: true })
+          this.updateValue();
+
           
             }
         }
@@ -73,6 +75,114 @@ export class PostcodeFillAutoComponent implements OnInit {
     }
 
   }
+
+  updateValue(){
+    this.clearMarker();
+    
+    const geocoder = new google.maps.Geocoder();
+    var houseNameNumber = this.myform.get('Address').value;
+    var streetname = this.myform.get('street_name').value;
+    var address2 = this.myform.get('Address2').value;
+    //var address3 = $("#address3").val();
+    var town = this.myform.get('town').value;
+    //var county = $("#county").val();
+    var address = '';
+    if(houseNameNumber){
+      if(streetname){
+        if(address2){
+          if(town){
+            address = houseNameNumber + ', ' + streetname + ', ' + address2 + ', ' + town;
+          }else{
+            address = houseNameNumber + ', ' + streetname + ', ' + address2;
+          }
+        }else{
+          address = houseNameNumber + ', ' + streetname;
+        }
+      }else{
+        address = houseNameNumber;
+      }
+    }else{
+      address = 'London';
+    }
+
+    // if(propertynickname){
+    //   address = propertynickname + ', ' + address; 
+    // }
+
+    address = address + ', ' +'United Kingdom';
+    
+    geocoder.geocode( { 'address': address}, (results:any, status:any) => {
+        if (status == 'OK') {
+            this.map.setCenter(results[0].geometry.location);
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            let marker = new google.maps.Marker({
+                draggable: true,
+                map: this.map,
+                position: results[0].geometry.location,
+                title: results[0].geometry.location
+            });
+            //infoWindow.open(map, marker);
+            //infoWindow.setContent(address);
+            
+            $('#lat').val(marker.position.lat());
+            $('#long').val(marker.position.lng());
+            this.setPosition(marker,latitude,longitude);
+        } else {
+            //infoWindow.setContent('Cannot Determine Your Location');
+            console.log('Geocode was not successful for the following reason: ' + status);
+            
+        }
+    }); 
+
+   
+}
+
+ setPosition(marker:any,latitude:any,longitude:any){
+  let infoWindow = new google.maps.InfoWindow;
+  this.myform.patchValue({
+    "lat":latitude,
+    "long":longitude
+
+  })
+
+  let Latlng = new google.maps.LatLng(latitude, longitude);
+  let geocoder = new google.maps.Geocoder();
+  infoWindow.open(this.map, marker);
+  geocoder.geocode({
+    latLng: Latlng
+  }, (responses:any)=> {
+    if (responses && responses.length > 0) {
+      infoWindow.setContent(responses[0].formatted_address);
+      var addr = responses[0].formatted_address;
+      
+    } else {
+      infoWindow.setContent('Cannot determine address at this location.');
+    }
+  });
+}
+
+ clearMarker(){
+  //infoWindow = new google.maps.InfoWindow;
+  var marker = new google.maps.Marker({
+      //draggable: true,
+      map: null,
+      //position: results[0].geometry.location,
+      //title: results[0].geometry.location
+  });
+  let markers = [];
+  this.map = null;
+  for (let i = 0; i < markers.length; i++) {
+    marker[i].setMap(this.map);
+  }
+  //var myLatlng = new google.maps.LatLng(51.507351, -0.127758);
+  var myOptions = {
+      zoom: 14,
+      //center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+}
 
   insertData() {
     console.log(this.myform.value);
