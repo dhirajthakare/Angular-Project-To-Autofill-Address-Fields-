@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { environment } from 'src/environments/environment.prod';
 declare var clickToAddress: any;
 declare var $: any;
 declare var google:any;
@@ -38,7 +39,7 @@ export class PostcodeFillAutoComponent implements OnInit {
   fillAutoPostcode(){
     
     const cc_object = new clickToAddress({
-      accessToken: "674c3-d013e-970d7-0763d",
+      accessToken: environment.accessToken,
       domMode: 'class', // Use names to find form elements
       defaultCountry: 'gbr',
       countryLanguage: 'en',
