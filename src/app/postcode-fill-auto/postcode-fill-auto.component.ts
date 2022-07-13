@@ -39,7 +39,7 @@ export class PostcodeFillAutoComponent implements OnInit {
   fillAutoPostcode(){
     
     const cc_object = new clickToAddress({
-      accessToken: environment.accessToken,
+      accessToken: environment.accessToken,//4674c3-d013e-970d7-0763d4
       domMode: 'class', // Use names to find form elements
       defaultCountry: 'gbr',
       countryLanguage: 'en',
